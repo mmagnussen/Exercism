@@ -1,33 +1,30 @@
-export const anagram = (startWord, wordArray) => {
+class Anagram {
+    constructor(input) {
+        this.word = input;
 
-    const firstWord = startWord.tolowerCase().split('').sort().join('');
+        // Alphabetize the letters in the input word
+        this.startWord = input.toLowerCase().split('').sort().join('')
+    }
 
-    for (var i = 0; wordArray.length < 1; i++) {
+    //Handle array of possible matches
+    matches(wordArray) {
+        const matches = [];
 
-        if (startWord === wordArray[i]) {
-            return false;
-        }
+        //Loop through the values of of the potential matches
+        for (const value of wordArray) {
 
-        //Check word length, return false if not
-        if (firstWord.length !== wordArray[i].length) {
-            return false;
-        }
+            // Alphabetize letters in match
+            const wordArray1 = value.toLowerCase().split('').sort().join('')
 
-        //Return false if word is the same
-        if (firstWord === wordArray[i].toLowerCase().split('').sort().join()) {
-            const matches = matches.push(wordArray[i])
-            console.log(matches);
 
-            if (matches.length === 1) {
-                return 'detects anagram'
+            //Check letter case, to makes sure differently cased/letter group matches are pushed
+            if (this.startWord === wordArray1 && this.word.toLowerCase() !== value.toLowerCase()) {
+
+                matches.push(value)
             }
-            if (matches.length === 2) {
-                'detects two anagrams'
-            }
-            if (matches.length === 3) {
-                'detects three anagrams'
-            }
-            else return 'no matches';
         }
+        return matches;
     }
 }
+
+export default Anagram;
