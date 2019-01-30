@@ -20,7 +20,7 @@ export const hey = message => {
   return (
     //First, dealing with strings ending in question marks:
 
-    //Condition for the single occurrence of a string with all caps ending with a question mark
+    //Condition for the single occurrence of a string is made all caps and matches a regex for at least one letter, ending with a question mark
     (message.slice(-1) === '?' && message === isUpperCase && lowerCaseLetters) ? responses.force
       //Condition for the other strings that end with a question mark  
       : (message.trim().slice(-1) === '?') ? responses.question

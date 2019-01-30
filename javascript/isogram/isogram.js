@@ -1,23 +1,16 @@
-const isIsogram = (word) => {
-    const wordArray = word.toLowerCase().split("");
+export function isIsogram(str) {
 
-    for (const [i, outer_letter] of wordArray.entries()) {
-        for (const [j, inner_letter] of wordArray.entries()) {
-            if (j !== i) {
+    //build array of lowercase letters, and split
+    const wordArray = str.toLowerCase().split('').filter(char => char.match(/[a-z]/));
 
-                if (outer_letter == inner_letter) {
-                    return "Not an isogram!"
-                }
-                else {
-                    return "Have an isogram!"
-                }
+    //compare the pre-Set array with the post-Set array, and if the same then it should be an isogram
+    let isoTest = new Set(wordArray);
 
+    //The object-like output from .filter ( {array} ) needs to be put in array markup ( [array])
+    const isoArray = [...isoTest];
 
-                // do stuff
-                // access locally-scoped outer loop member with outer_element
-                // access locally-scoped inner loop member with inner_element
-                // you can still access the outer scope using my_array[i] and my_array[j]
-            }
-        }
-    }
-};
+    //Since the arrays will not show as 'equal', convert them to string for comparison
+    return (
+        (str == '') ? true
+            : (wordArray.join('') == isoArray.join('')) ? true : false)
+}
